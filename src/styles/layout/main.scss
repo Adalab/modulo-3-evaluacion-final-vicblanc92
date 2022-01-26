@@ -15,8 +15,10 @@ body {
     background-color: rgb(163, 33, 33);
     font-size: 30px;
     text-align: center;
+    border: 2px solid rgb(201, 167, 19);
+
     &--name {
-      font-family: '' Cinzel ', serif;';
+      font-family: ' Cinzel ';
     }
   }
 }

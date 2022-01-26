@@ -1,22 +1,26 @@
 import CharacterCard from './CharacterCard';
 
 const CharactersList = (props) => {
-  const characterElements = props.characters.map((character, index) => {
+  if (props.characters.length > 0) {
+    const characterElements = props.characters.map((character, index) => {
+      return (
+        <li className="li__wrapper" key={index}>
+          <CharacterCard character={character} />
+        </li>
+      );
+    });
     return (
-      <li className="li__wrapper" key={index}>
-        <CharacterCard character={character} />
-      </li>
+      <>
+        <main>
+          <section>
+            <ul className="ul__wrapper">{characterElements}</ul>
+          </section>
+        </main>
+      </>
     );
-  });
-  return (
-    <>
-      <main>
-        <section>
-          <ul className="ul__wrapper">{characterElements}</ul>
-        </section>
-      </main>
-    </>
-  );
+  } else {
+    return <p>No hay resultados</p>;
+  }
 };
 
 export default CharactersList;

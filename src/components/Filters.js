@@ -7,11 +7,11 @@ const Filters = (props) => {
       <form className="form__wrapper">
         <FilterName
           handleFilterName={props.handleFilterName}
-          filterName={props.FilterName}
+          filterName={props.filterName}
         />
         <FilterHouse
           handleFilterHouse={props.handleFilterHouse}
-          FilterHouse={props.FilterHouse}
+          filterHouse={props.filterHouse}
         />
       </form>
     </>

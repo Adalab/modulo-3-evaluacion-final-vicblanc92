@@ -11,7 +11,7 @@ const FilterName = (props) => {
         onChange={handleChangeInput}
         className="form__input"
         type="text"
-        value={props.FilterName}
+        value={props.filterName}
       ></input>
     </>
   );
