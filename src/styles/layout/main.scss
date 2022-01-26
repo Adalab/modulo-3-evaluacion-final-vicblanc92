@@ -1,0 +1,28 @@
+body {
+  background-color: #111111;
+  color: #ffff;
+}
+
+.li {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 40px;
+    margin: 30px;
+    width: 400px;
+    background-color: rgb(163, 33, 33);
+    font-size: 30px;
+    text-align: center;
+  }
+}
+
+.ul {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: 30px;
+  }
+}
