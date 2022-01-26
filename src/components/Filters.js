@@ -9,7 +9,10 @@ const Filters = (props) => {
           handleFilterName={props.handleFilterName}
           filterName={props.FilterName}
         />
-        <FilterHouse />
+        <FilterHouse
+          handleFilterHouse={props.handleFilterHouse}
+          FilterHouse={props.FilterHouse}
+        />
       </form>
     </>
   );
