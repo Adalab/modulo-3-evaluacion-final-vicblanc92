@@ -1,7 +1,7 @@
 import CharacterCard from './CharacterCard';
 
-const CharactersList = (props, index) => {
-  const characterElements = props.characters.map((character) => {
+const CharactersList = (props) => {
+  const characterElements = props.characters.map((character, index) => {
     return (
       <li className="li__wrapper" key={index}>
         <CharacterCard character={character} />

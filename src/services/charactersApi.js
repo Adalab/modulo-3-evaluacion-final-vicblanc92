@@ -6,9 +6,9 @@ const getCharactersFromApi = () => {
         return {
           id: `${character.name}${character.dateOfBirth}`,
           name: character.name,
-          image:
-            character.image ??
-            `https://via.placeholder.com/210x295/ffffff/666666/?text=${character.name}`,
+          image: character.image
+            ? character.image
+            : `https://via.placeholder.com/210x295/ffffff/666666/?text=${character.name}`,
           species: character.species,
           house: character.house,
         };
