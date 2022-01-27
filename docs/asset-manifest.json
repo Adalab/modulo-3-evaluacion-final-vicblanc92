@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3af761b5.css",
+    "main.js": "./static/js/main.50b23c64.js",
+    "static/media/HARRYP__.TTF": "./static/media/HARRYP__.a65869c0c1a4b3d4fcfc.TTF",
+    "static/media/emblemahogwarts.jpg": "./static/media/emblemahogwarts.50dc705c584a13c38ed2.jpg",
+    "index.html": "./index.html",
+    "main.3af761b5.css.map": "./static/css/main.3af761b5.css.map",
+    "main.50b23c64.js.map": "./static/js/main.50b23c64.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3af761b5.css",
+    "static/js/main.50b23c64.js"
+  ]
+}
