@@ -19,7 +19,11 @@ const CharactersList = (props) => {
       </>
     );
   } else {
-    return <p>No hay resultados</p>;
+    return (
+      <div className="character__detail--exists">
+        <p>El personaje no existe.</p>
+      </div>
+    );
   }
 };
 

@@ -5,13 +5,15 @@ import getCharactersFromApi from '../services/charactersApi';
 import { useState } from 'react/cjs/react.development';
 import CharactersList from './CharactersList';
 import Filters from './Filters';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import CharacterDetail from './CharacterDetail';
+import Header from './Header';
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [filterName, setFilterName] = useState('');
   const [filterHouse, setFilterHouse] = useState('Gryffindor');
+  const [filterGender, setFilterGender] = useState('');
 
   //cada vez ue filtre por nombre o por casa, quiero guardar los datos en mi variable estado, además tengo que controlar el input y el select. Al renderizar mi página se hará con lo que me interesa.
 
@@ -21,9 +23,13 @@ function App() {
     });
   }, [filterHouse]);
 
-  const filteredCharacters = characters.filter((character) => {
-    return character.name.toLowerCase().includes(filterName.toLowerCase());
-  });
+  const filteredCharacters = characters
+    .filter((character) => {
+      return character.name.toLowerCase().includes(filterName.toLowerCase());
+    })
+    .filter((character) => {
+      return filterGender === '' ? true : character.gender === filterGender;
+    });
   // .filter((character) => {
   //   return character.house === ''
   //     ? 'gryffindor'
@@ -42,11 +48,15 @@ function App() {
     setFilterHouse(houseData);
   };
 
-  // const handleReset = () => {
-  //   setFilterHouse('Gryffindor');
-  //   setFilterName('');
-  //   setCharacters([]);
-  // };
+  const handleFilterGender = (genderData) => {
+    setFilterGender(genderData);
+  };
+
+  const handleReset = () => {
+    setFilterName('');
+    setFilterHouse('Gryffindor');
+    setCharacters([]);
+  };
 
   //recibe dos parámetros que son objetos.
 
@@ -54,20 +64,20 @@ function App() {
 
   //función manejadora que es la encargada de modificar filter name. recibe como parámetro un valor que le va a meter a la variable de estado filterName.
   //no tengo que tner el target aqui porque es en filterName donde existe el evento.
-  const renderCharacterDetail = (props) => {
-    const characterId = props.match.params.characterId;
+  const routeData = useRouteMatch('/character/:house/:characterId');
+  const house = routeData ? routeData.params.house : filterHouse;
+  const characterId = routeData ? routeData.params.characterId : null;
+  const foundCharacter = characters.find(
+    (character) => character.id === characterId
+  );
 
-    const foundCharacter = characters.find(
-      (character) => character.id === characterId
-    );
-    return <CharacterDetail character={foundCharacter} />;
-  };
+  if (house !== filterHouse) {
+    setFilterHouse(house);
+  }
 
   return (
     <>
-      <div className="header__div">
-        <h1 className="header__title">Harry Potter</h1>
-      </div>
+      <Header />
       <Switch>
         <Route path="/" exact>
           <Filters
@@ -75,13 +85,16 @@ function App() {
             filterName={filterName} //esto es el valor que ha escrito la usuaria para buscar por nombre
             handleFilterHouse={handleFilterHouse}
             filterHouse={filterHouse}
+            handleReset={handleReset}
+            handleFilterGender={handleFilterGender}
+            filterGender={filterGender}
           />
+
           <CharactersList characters={filteredCharacters} />
         </Route>
-        <Route
-          path="/character/:characterId"
-          render={renderCharacterDetail}
-        ></Route>
+        <Route path="/character/:house/:characterId">
+          <CharacterDetail character={foundCharacter} />;
+        </Route>
       </Switch>
     </>
   );

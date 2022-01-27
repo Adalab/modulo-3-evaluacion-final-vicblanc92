@@ -9,11 +9,12 @@ const getCharactersFromApi = (house) => {
             name: character.name,
             image: character.image
               ? character.image
-              : `https://via.placeholder.com/210x295/ffffff/666666/?text=${character.name}`,
+              : `https://via.placeholder.com/210x295/c4c4c4/666666/?text=${character.name}`,
             species: character.species,
             house: character.house,
             alive: character.alive,
             dateOfBirth: character.dateOfBirth,
+            gender: character.gender,
           };
         })
         .sort((a, b) => a.name.localeCompare(b.name));

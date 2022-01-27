@@ -1,5 +1,6 @@
 const FilterName = (props) => {
   const handleChangeInput = (ev) => {
+    ev.preventDefault();
     props.handleFilterName(ev.currentTarget.value);
   };
 
