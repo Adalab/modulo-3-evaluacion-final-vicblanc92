@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
+// import Gryffindor from '../images/gryffindor.jpg';
 
 const CharacterDetail = (props) => {
+  // const houseHogwarts = () => {
+  //   if (props.character.house === 'Gryffindor') {
+  //     <img src={Gryffindor} alt="gryffindor"></img>;
+  //   }
+  // };
   if (props.character) {
     return (
       <>
+        {/* <img alt="Gryffindor">{houseHogwarts()}</img> */}
         <section className="character__detail--card">
           <img
             className="character__detail--image"
@@ -20,7 +27,7 @@ const CharacterDetail = (props) => {
               Género: {props.character.gender}
             </p>
             <p className="character__detail--status">
-              Estado: {props.character.alive ? 'VIVO/A' : 'FALLECIDO/A'}
+              Estado: {props.character.alive ? 'Vivo/a' : 'Fallecido/a'}
             </p>
             <p className="character__detail--house">
               Casa: {props.character.house}
