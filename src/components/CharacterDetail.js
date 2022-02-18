@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom';
-// import Gryffindor from '../images/gryffindor.jpg';
+import Header from '../components/Header';
+// import Gryffindor from '../images/gryffindor.jpg'
 
 const CharacterDetail = (props) => {
-  // const houseHogwarts = () => {
-  //   if (props.character.house === 'Gryffindor') {
-  //     <img src={Gryffindor} alt="gryffindor"></img>;
-  //   }
-  // };
   if (props.character) {
     return (
       <>
         {/* <img alt="Gryffindor">{houseHogwarts()}</img> */}
+        <Header />
+        <Link to="/">
+          <button className="character__detail--link"> &lt; Volver </button>
+        </Link>
         <section className="character__detail--card">
           <img
             className="character__detail--image"
-            width="400px"
-            height="600px"
             src={props.character.image}
             alt={props.character.name}
           />
@@ -24,17 +22,15 @@ const CharacterDetail = (props) => {
             <h4 className="character__detail--name">{props.character.name}</h4>
 
             <p className="character__detail--gender">
-              Género: {props.character.gender}
+              Género: {props.character.gender === 'female' ? 'Mujer' : 'Hombre'}
             </p>
             <p className="character__detail--status">
-              Estado: {props.character.alive ? 'Vivo/a' : 'Fallecido/a'}
+              Estado:{' '}
+              {props.character.alive === true && 'male' ? 'Vivo' : 'Fallecido'}
             </p>
             <p className="character__detail--house">
               Casa: {props.character.house}
             </p>
-            <Link className="character__detail--link" to="/">
-              Volver
-            </Link>
           </div>
         </section>
       </>

@@ -2,7 +2,7 @@ import '../styles/App.scss';
 // import LocalStorage from '../services/LocalStorage.js';
 import { useEffect } from 'react';
 import getCharactersFromApi from '../services/charactersApi';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import CharactersList from './CharactersList';
 import Filters from './Filters';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
@@ -14,6 +14,8 @@ function App() {
   const [filterName, setFilterName] = useState('');
   const [filterHouse, setFilterHouse] = useState('Gryffindor');
   const [filterGender, setFilterGender] = useState('');
+  const [filterSpecie, setFilterSpecie] = useState('');
+  const [sortCharacters, setSortCharacters] = useState(false);
 
   //cada vez ue filtre por nombre o por casa, quiero guardar los datos en mi variable estado, además tengo que controlar el input y el select. Al renderizar mi página se hará con lo que me interesa.
 
@@ -23,18 +25,27 @@ function App() {
     });
   }, [filterHouse]);
 
-  const filteredCharacters = characters
-    .filter((character) => {
-      return character.name.toLowerCase().includes(filterName.toLowerCase());
-    })
-    .filter((character) => {
-      return filterGender === '' ? true : character.gender === filterGender;
+  let filteredCharacters = [...characters];
+  if (filterName !== '') {
+    filteredCharacters = filteredCharacters.filter((character) =>
+      character.name.toLowerCase().includes(filterName.toLowerCase())
+    );
+  }
+  if (filterGender !== '') {
+    filteredCharacters = filteredCharacters.filter(
+      (character) => character.gender === filterGender
+    );
+  }
+  if (filterSpecie !== '') {
+    filteredCharacters = filteredCharacters.filter((character) => {
+      return character.species
+        .toLowerCase()
+        .includes(filterSpecie.toLowerCase());
     });
-  // .filter((character) => {
-  //   return character.house === ''
-  //     ? 'gryffindor'
-  //     : character.house === filterHouse;
-  // });
+  }
+  if (sortCharacters) {
+    filteredCharacters.sort((a, b) => a.name.localeCompare(b.name));
+  }
 
   //lo que me devuelve la api lo convierto a mayúsculas, incluimos lo que ha escrito la usuaria y lo convertimos a minúsculas.
 
@@ -50,6 +61,14 @@ function App() {
 
   const handleFilterGender = (genderData) => {
     setFilterGender(genderData);
+  };
+
+  const handleFilterSpecie = (specieData) => {
+    setFilterSpecie(specieData);
+  };
+
+  const handleSortCharacters = (sortData) => {
+    setSortCharacters(sortData);
   };
 
   const handleReset = () => {
@@ -77,9 +96,9 @@ function App() {
 
   return (
     <>
-      <Header />
       <Switch>
         <Route path="/" exact>
+          <Header />
           <Filters
             handleFilterName={handleFilterName}
             filterName={filterName} //esto es el valor que ha escrito la usuaria para buscar por nombre
@@ -88,6 +107,10 @@ function App() {
             handleReset={handleReset}
             handleFilterGender={handleFilterGender}
             filterGender={filterGender}
+            handleFilterSpecie={handleFilterSpecie}
+            filterSpecie={filterSpecie}
+            handleSortCharacters={handleSortCharacters}
+            sortCharacters={sortCharacters}
           />
 
           <CharactersList characters={filteredCharacters} />

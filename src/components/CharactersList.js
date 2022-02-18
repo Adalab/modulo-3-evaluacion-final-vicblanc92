@@ -26,7 +26,6 @@ const CharactersList = (props) => {
     );
   }
 };
-
 export default CharactersList;
 
 //transforma el array de objetos en li

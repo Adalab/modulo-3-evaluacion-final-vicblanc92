@@ -4,7 +4,7 @@ const ResetBtn = (props) => {
   };
   return (
     <button className="btn__reset" onClick={handleReset}>
-      Reset
+      Borrar la búsqueda
     </button>
   );
 };

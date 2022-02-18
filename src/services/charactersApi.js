@@ -2,22 +2,20 @@ const getCharactersFromApi = (house) => {
   return fetch(`http://hp-api.herokuapp.com/api/characters/house/${house}`)
     .then((response) => response.json())
     .then((charactersResult) => {
-      const characters = charactersResult
-        .map((character) => {
-          return {
-            id: `${character.name}${character.dateOfBirth}`,
-            name: character.name,
-            image: character.image
-              ? character.image
-              : `https://via.placeholder.com/210x295/c4c4c4/666666/?text=${character.name}`,
-            species: character.species,
-            house: character.house,
-            alive: character.alive,
-            dateOfBirth: character.dateOfBirth,
-            gender: character.gender,
-          };
-        })
-        .sort((a, b) => a.name.localeCompare(b.name));
+      const characters = charactersResult.map((character) => {
+        return {
+          id: `${character.name}${character.dateOfBirth}`,
+          name: character.name,
+          image: character.image
+            ? character.image
+            : 'https://i.pinimg.com/564x/93/f3/09/93f309718a76990c1d9a1446a1449585.jpg',
+          species: character.species,
+          house: character.house,
+          alive: character.alive,
+          dateOfBirth: character.dateOfBirth,
+          gender: character.gender,
+        };
+      });
       return characters;
     });
 };
