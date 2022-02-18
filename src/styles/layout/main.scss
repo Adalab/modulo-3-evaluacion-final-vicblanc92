@@ -4,7 +4,9 @@ body {
   background-color: rgb(2, 4, 37);
   justify-content: space-around;
   text-align: center;
-  background-image: url('../../images/noche.jpg');
+  background-image: url(../../images/starsnight.jpg);
+
+  background-size: contain;
 }
 
 .li {
@@ -94,7 +96,7 @@ body {
       margin: 50px;
       border-radius: 8px;
       &:hover {
-        background-color: rgb(162, 139, 248);
+        background-color: rgb(177, 181, 241);
         color: #fff;
         transition: color ease 1s;
       }
@@ -132,7 +134,7 @@ body {
     height: 25px;
     border-radius: 5px;
     margin: 20px;
-    background-color: rgb(162, 139, 248);
+    background-color: rgb(177, 181, 241);
     &--sort {
       margin: 10px;
       height: 20px;
@@ -147,7 +149,7 @@ body {
     border-radius: 5px;
     margin: 20px;
     font-family: 'IM Fell English SC', serif;
-    background-color: rgb(162, 139, 248);
+    background-color: rgb(177, 181, 241);
   }
 }
 
@@ -160,9 +162,8 @@ body {
     border-radius: 10px;
     margin: 30px;
     &:hover {
-      background-color: rgb(162, 139, 248);
-      color: #fff;
-      transition: color ease 1s;
+      background-color: rgb(177, 181, 241);
+      transition: color ease 2s;
     }
   }
 }
